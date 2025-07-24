@@ -1,0 +1,869 @@
+{
+  "overall_costs_by_provider": {
+    "gpt-4o-mini": 0.426471,
+    "o3-2025-04-16": 4.45147,
+    "gpt-4.1": 1.987574
+  },
+  "run_history": [
+    {
+      "run_id": "10bfc01a-d7d9-4336-96f8-bcb5031e7fa4",
+      "start_time": "2025-07-23T23:49:27.324169",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "10bfc01a-d7d9-4336-96f8-bcb5031e7fa4",
+        "start_time": "2025-07-23T23:49:27.324169",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "8128e6bc-2d12-47f7-9ed9-65061b36505b",
+      "start_time": "2025-07-23T23:49:27.325059",
+      "status": "completed",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "8128e6bc-2d12-47f7-9ed9-65061b36505b",
+        "start_time": "2025-07-23T23:49:27.325059",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 0.0,
+      "end_time": "2025-07-23T23:49:27.329196"
+    },
+    {
+      "run_id": "92b0272b-950d-445d-ab61-bd9f7c90a19a",
+      "start_time": "2025-07-23T23:49:30.247995",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "92b0272b-950d-445d-ab61-bd9f7c90a19a",
+        "start_time": "2025-07-23T23:49:30.247995",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "2474be8b-9ced-4b02-beb1-5e22112cd1bd",
+      "start_time": "2025-07-23T23:49:30.249065",
+      "status": "completed",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "2474be8b-9ced-4b02-beb1-5e22112cd1bd",
+        "start_time": "2025-07-23T23:49:30.249065",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 0.0,
+      "end_time": "2025-07-23T23:49:30.253190"
+    },
+    {
+      "run_id": "5f0a57db-80c9-498a-8f45-504711f6c6c9",
+      "start_time": "2025-07-23T23:50:41.981951",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "5f0a57db-80c9-498a-8f45-504711f6c6c9",
+        "start_time": "2025-07-23T23:50:41.981951",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "bd5941b3-05d8-40ba-9cf2-5449818b5333",
+      "start_time": "2025-07-23T23:50:41.983175",
+      "status": "completed",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "bd5941b3-05d8-40ba-9cf2-5449818b5333",
+        "start_time": "2025-07-23T23:50:41.983175",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 1.96,
+      "end_time": "2025-07-23T23:50:43.943222"
+    },
+    {
+      "run_id": "a40ae726-1e5f-4475-83f4-241ab26b99be",
+      "start_time": "2025-07-23T23:54:41.244186",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "a40ae726-1e5f-4475-83f4-241ab26b99be",
+        "start_time": "2025-07-23T23:54:41.244186",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "cb3b7740-27d4-41f6-9cc5-1aa0909a09bd",
+      "start_time": "2025-07-23T23:54:41.245392",
+      "status": "completed",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "cb3b7740-27d4-41f6-9cc5-1aa0909a09bd",
+        "start_time": "2025-07-23T23:54:41.245392",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 0.66,
+      "end_time": "2025-07-23T23:54:41.909148"
+    },
+    {
+      "run_id": "ce655fb9-16f0-4bae-8284-df8ba16c83ef",
+      "start_time": "2025-07-23T23:56:22.351803",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "ce655fb9-16f0-4bae-8284-df8ba16c83ef",
+        "start_time": "2025-07-23T23:56:22.351803",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "ef3b086b-9603-424d-a378-ece8777a2e4e",
+      "start_time": "2025-07-23T23:56:22.353059",
+      "status": "completed",
+      "total_cost": 0.555946,
+      "costs_by_provider": {
+        "gpt-4o-mini": 0.01416,
+        "o3-2025-04-16": 0.541786
+      },
+      "metadata": {
+        "run_id": "ef3b086b-9603-424d-a378-ece8777a2e4e",
+        "start_time": "2025-07-23T23:56:22.353059",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 67.65,
+      "end_time": "2025-07-23T23:57:30.003942"
+    },
+    {
+      "run_id": "c5736f01-d059-4309-8e2a-50bdd70b75a3",
+      "start_time": "2025-07-23T23:59:19.826479",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "c5736f01-d059-4309-8e2a-50bdd70b75a3",
+        "start_time": "2025-07-23T23:59:19.826479",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "cb380b48-3de7-443f-884a-986b34760cbb",
+      "start_time": "2025-07-23T23:59:19.827958",
+      "status": "completed",
+      "total_cost": 0.551802,
+      "costs_by_provider": {
+        "o3-2025-04-16": 0.551802
+      },
+      "metadata": {
+        "run_id": "cb380b48-3de7-443f-884a-986b34760cbb",
+        "start_time": "2025-07-23T23:59:19.827958",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 25.06,
+      "end_time": "2025-07-23T23:59:44.885232"
+    },
+    {
+      "run_id": "e90b6fc9-781a-46fb-8a8e-27cf9332fa1e",
+      "start_time": "2025-07-24T00:01:42.033489",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "e90b6fc9-781a-46fb-8a8e-27cf9332fa1e",
+        "start_time": "2025-07-24T00:01:42.033489",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "272156a6-eb70-4c0b-a21a-e69a1e479658",
+      "start_time": "2025-07-24T00:01:42.034918",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "272156a6-eb70-4c0b-a21a-e69a1e479658",
+        "start_time": "2025-07-24T00:01:42.034918",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "bbfcaa39-481d-41bd-94c4-f68d93d408e5",
+      "start_time": "2025-07-24T00:04:03.038900",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "bbfcaa39-481d-41bd-94c4-f68d93d408e5",
+        "start_time": "2025-07-24T00:04:03.038900",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "afe02c59-37c7-40f6-9f98-e7e292596204",
+      "start_time": "2025-07-24T00:04:03.040697",
+      "status": "completed",
+      "total_cost": 0.164923,
+      "costs_by_provider": {
+        "gpt-4o-mini": 0.164923
+      },
+      "metadata": {
+        "run_id": "afe02c59-37c7-40f6-9f98-e7e292596204",
+        "start_time": "2025-07-24T00:04:03.040697",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 320.72,
+      "end_time": "2025-07-24T00:09:23.762454"
+    },
+    {
+      "run_id": "07b4d99e-ae4e-469d-b153-77ec1952045e",
+      "start_time": "2025-07-24T00:10:31.076816",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "07b4d99e-ae4e-469d-b153-77ec1952045e",
+        "start_time": "2025-07-24T00:10:31.076816",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "ac1089ac-6fc7-4a51-8ff2-237017f3ef8b",
+      "start_time": "2025-07-24T00:10:31.078508",
+      "status": "completed",
+      "total_cost": 0.168974,
+      "costs_by_provider": {
+        "gpt-4o-mini": 0.168974
+      },
+      "metadata": {
+        "run_id": "ac1089ac-6fc7-4a51-8ff2-237017f3ef8b",
+        "start_time": "2025-07-24T00:10:31.078508",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 280.14,
+      "end_time": "2025-07-24T00:15:11.216741"
+    },
+    {
+      "run_id": "a8fbfa13-95a8-4cfc-9f61-cf04cb19bf4f",
+      "start_time": "2025-07-24T00:15:51.721736",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "a8fbfa13-95a8-4cfc-9f61-cf04cb19bf4f",
+        "start_time": "2025-07-24T00:15:51.721736",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "24387cf3-12e6-4239-9fda-e82c78231527",
+      "start_time": "2025-07-24T00:15:51.723517",
+      "status": "completed",
+      "total_cost": 0.012002,
+      "costs_by_provider": {
+        "gpt-4o-mini": 0.012002
+      },
+      "metadata": {
+        "run_id": "24387cf3-12e6-4239-9fda-e82c78231527",
+        "start_time": "2025-07-24T00:15:51.723517",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 26.19,
+      "end_time": "2025-07-24T00:16:17.916351"
+    },
+    {
+      "run_id": "387a9b9d-9d1d-4267-a687-7063b21bd491",
+      "start_time": "2025-07-24T00:16:45.067402",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "387a9b9d-9d1d-4267-a687-7063b21bd491",
+        "start_time": "2025-07-24T00:16:45.067402",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "a48654e4-90c6-46ae-b169-bf1d4079c8d0",
+      "start_time": "2025-07-24T00:16:45.069252",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "a48654e4-90c6-46ae-b169-bf1d4079c8d0",
+        "start_time": "2025-07-24T00:16:45.069252",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "79cf570c-ba8d-4d9a-9c67-cf027f6fd573",
+      "start_time": "2025-07-24T00:17:14.035187",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "79cf570c-ba8d-4d9a-9c67-cf027f6fd573",
+        "start_time": "2025-07-24T00:17:14.035187",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "67c1a1b9-b2b7-4ebe-8e97-cffb23e256c0",
+      "start_time": "2025-07-24T00:17:14.037090",
+      "status": "completed",
+      "total_cost": 0.013177,
+      "costs_by_provider": {
+        "gpt-4o-mini": 0.013177
+      },
+      "metadata": {
+        "run_id": "67c1a1b9-b2b7-4ebe-8e97-cffb23e256c0",
+        "start_time": "2025-07-24T00:17:14.037090",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 12.37,
+      "end_time": "2025-07-24T00:17:26.404684"
+    },
+    {
+      "run_id": "a4722d6e-6cb8-4a2e-a070-2854caaf7a61",
+      "start_time": "2025-07-24T00:18:00.393874",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "a4722d6e-6cb8-4a2e-a070-2854caaf7a61",
+        "start_time": "2025-07-24T00:18:00.393874",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "50a14817-be9e-43bd-919f-0d81c1e75ecd",
+      "start_time": "2025-07-24T00:18:00.395784",
+      "status": "completed",
+      "total_cost": 0.000561,
+      "costs_by_provider": {
+        "gpt-4o-mini": 0.000561
+      },
+      "metadata": {
+        "run_id": "50a14817-be9e-43bd-919f-0d81c1e75ecd",
+        "start_time": "2025-07-24T00:18:00.395784",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 8.85,
+      "end_time": "2025-07-24T00:18:09.241862"
+    },
+    {
+      "run_id": "b89fe60b-68cb-4450-bdc9-42d59d69d123",
+      "start_time": "2025-07-24T00:19:22.832967",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "b89fe60b-68cb-4450-bdc9-42d59d69d123",
+        "start_time": "2025-07-24T00:19:22.832967",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "07a47de7-d24d-4c47-8dba-cb1a0ebd4e61",
+      "start_time": "2025-07-24T00:19:22.835004",
+      "status": "completed",
+      "total_cost": 0.38335,
+      "costs_by_provider": {
+        "gpt-4o-mini": 0.022158,
+        "o3-2025-04-16": 0.361192
+      },
+      "metadata": {
+        "run_id": "07a47de7-d24d-4c47-8dba-cb1a0ebd4e61",
+        "start_time": "2025-07-24T00:19:22.835004",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 39.63,
+      "end_time": "2025-07-24T00:20:02.460803"
+    },
+    {
+      "run_id": "63ef817b-b208-442f-9f7f-87c7d3fd300a",
+      "start_time": "2025-07-24T00:23:52.875639",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "63ef817b-b208-442f-9f7f-87c7d3fd300a",
+        "start_time": "2025-07-24T00:23:52.875639",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "7fee6dd6-c0f1-441f-87cb-68c3edf92164",
+      "start_time": "2025-07-24T00:23:52.877837",
+      "status": "completed",
+      "total_cost": 0.01661,
+      "costs_by_provider": {
+        "gpt-4o-mini": 0.01661
+      },
+      "metadata": {
+        "run_id": "7fee6dd6-c0f1-441f-87cb-68c3edf92164",
+        "start_time": "2025-07-24T00:23:52.877837",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 25.11,
+      "end_time": "2025-07-24T00:24:17.985822"
+    },
+    {
+      "run_id": "26fdc4e6-5898-4728-b25a-6975dfe5a4a9",
+      "start_time": "2025-07-24T00:24:52.608220",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "26fdc4e6-5898-4728-b25a-6975dfe5a4a9",
+        "start_time": "2025-07-24T00:24:52.608220",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "f0c24cbb-c706-414e-9c92-45ebd5325926",
+      "start_time": "2025-07-24T00:24:52.610380",
+      "status": "completed",
+      "total_cost": 0.0271,
+      "costs_by_provider": {
+        "gpt-4o-mini": 0.001644,
+        "o3-2025-04-16": 0.025456
+      },
+      "metadata": {
+        "run_id": "f0c24cbb-c706-414e-9c92-45ebd5325926",
+        "start_time": "2025-07-24T00:24:52.610380",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 13.67,
+      "end_time": "2025-07-24T00:25:06.284504"
+    },
+    {
+      "run_id": "a2cfc149-5106-4cc4-bec6-bcc0d7eaf479",
+      "start_time": "2025-07-24T00:25:40.232061",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "a2cfc149-5106-4cc4-bec6-bcc0d7eaf479",
+        "start_time": "2025-07-24T00:25:40.232061",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "ec30a5f9-306d-4a4b-a92b-7dc4c95f3b4b",
+      "start_time": "2025-07-24T00:25:40.234464",
+      "status": "completed",
+      "total_cost": 0.028196,
+      "costs_by_provider": {
+        "gpt-4o-mini": 0.001666,
+        "o3-2025-04-16": 0.02653
+      },
+      "metadata": {
+        "run_id": "ec30a5f9-306d-4a4b-a92b-7dc4c95f3b4b",
+        "start_time": "2025-07-24T00:25:40.234464",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 26.74,
+      "end_time": "2025-07-24T00:26:06.976282"
+    },
+    {
+      "run_id": "e043c85f-b4d0-4a49-bf4a-f6005f466a37",
+      "start_time": "2025-07-24T00:35:49.280141",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "e043c85f-b4d0-4a49-bf4a-f6005f466a37",
+        "start_time": "2025-07-24T00:35:49.280141",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "c4e3b8e5-2a66-4ea6-a5d6-858797e5168f",
+      "start_time": "2025-07-24T00:35:49.282542",
+      "status": "completed",
+      "total_cost": 0.098085,
+      "costs_by_provider": {
+        "gpt-4o-mini": 0.005355,
+        "o3-2025-04-16": 0.09273
+      },
+      "metadata": {
+        "run_id": "c4e3b8e5-2a66-4ea6-a5d6-858797e5168f",
+        "start_time": "2025-07-24T00:35:49.282542",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 36.13,
+      "end_time": "2025-07-24T00:36:25.410201"
+    },
+    {
+      "run_id": "3a7dfd0a-6d46-4b6e-9385-9ec78f48e94c",
+      "start_time": "2025-07-24T00:46:58.735020",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "3a7dfd0a-6d46-4b6e-9385-9ec78f48e94c",
+        "start_time": "2025-07-24T00:46:58.735020",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "7b8883b1-5511-4e4d-82f2-088a4dc434bd",
+      "start_time": "2025-07-24T00:46:58.737490",
+      "status": "completed",
+      "total_cost": 0.105321,
+      "costs_by_provider": {
+        "gpt-4o-mini": 0.005241,
+        "o3-2025-04-16": 0.10008
+      },
+      "metadata": {
+        "run_id": "7b8883b1-5511-4e4d-82f2-088a4dc434bd",
+        "start_time": "2025-07-24T00:46:58.737490",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 38.18,
+      "end_time": "2025-07-24T00:47:36.917606"
+    },
+    {
+      "run_id": "a7fed844-2f3f-4f13-a786-2d970d8aff6a",
+      "start_time": "2025-07-24T20:53:58.610517",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "a7fed844-2f3f-4f13-a786-2d970d8aff6a",
+        "start_time": "2025-07-24T20:53:58.610517",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "acdab098-e1b2-489b-bcb8-a2bda5ee60c0",
+      "start_time": "2025-07-24T20:53:58.613982",
+      "status": "completed",
+      "total_cost": 0.838332,
+      "costs_by_provider": {
+        "gpt-4.1": 0.371048,
+        "o3-2025-04-16": 0.467284
+      },
+      "metadata": {
+        "run_id": "acdab098-e1b2-489b-bcb8-a2bda5ee60c0",
+        "start_time": "2025-07-24T20:53:58.613982",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 88.41,
+      "end_time": "2025-07-24T20:55:27.021821"
+    },
+    {
+      "run_id": "e1e3863d-a134-43cd-9129-bf647298b881",
+      "start_time": "2025-07-24T21:00:16.441628",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "e1e3863d-a134-43cd-9129-bf647298b881",
+        "start_time": "2025-07-24T21:00:16.441628",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "e26f1d4f-24f1-4852-a2f7-1aa3e7e10bd4",
+      "start_time": "2025-07-24T21:00:16.444314",
+      "status": "completed",
+      "total_cost": 0.955718,
+      "costs_by_provider": {
+        "gpt-4.1": 0.388978,
+        "o3-2025-04-16": 0.56674
+      },
+      "metadata": {
+        "run_id": "e26f1d4f-24f1-4852-a2f7-1aa3e7e10bd4",
+        "start_time": "2025-07-24T21:00:16.444314",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 82.8,
+      "end_time": "2025-07-24T21:01:39.245172"
+    },
+    {
+      "run_id": "2f865f9c-a28a-4ff2-a214-e972ae94827d",
+      "start_time": "2025-07-24T21:07:55.130511",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "2f865f9c-a28a-4ff2-a214-e972ae94827d",
+        "start_time": "2025-07-24T21:07:55.130511",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "b5a3f1ae-b0b4-4230-8bf5-0b93c6528db0",
+      "start_time": "2025-07-24T21:07:55.133099",
+      "status": "completed",
+      "total_cost": 0.213842,
+      "costs_by_provider": {
+        "gpt-4.1": 0.082372,
+        "o3-2025-04-16": 0.13147
+      },
+      "metadata": {
+        "run_id": "b5a3f1ae-b0b4-4230-8bf5-0b93c6528db0",
+        "start_time": "2025-07-24T21:07:55.133099",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 46.84,
+      "end_time": "2025-07-24T21:08:41.974375"
+    },
+    {
+      "run_id": "8357a0e7-45e3-4957-8271-6d87f9d1f380",
+      "start_time": "2025-07-24T21:18:56.536338",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "8357a0e7-45e3-4957-8271-6d87f9d1f380",
+        "start_time": "2025-07-24T21:18:56.536338",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "c6255190-5085-4950-a0eb-70a503f9dfbc",
+      "start_time": "2025-07-24T21:18:56.539153",
+      "status": "completed",
+      "total_cost": 0.083444,
+      "costs_by_provider": {
+        "gpt-4.1": 0.083444
+      },
+      "metadata": {
+        "run_id": "c6255190-5085-4950-a0eb-70a503f9dfbc",
+        "start_time": "2025-07-24T21:18:56.539153",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 13.28,
+      "end_time": "2025-07-24T21:19:09.816895"
+    },
+    {
+      "run_id": "64c10f46-156a-4e32-a948-14025bd8e290",
+      "start_time": "2025-07-24T21:19:20.511074",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "64c10f46-156a-4e32-a948-14025bd8e290",
+        "start_time": "2025-07-24T21:19:20.511074",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "6b0cc7a2-3001-4841-86e8-242e9fe38512",
+      "start_time": "2025-07-24T21:19:20.513963",
+      "status": "completed",
+      "total_cost": 0.132776,
+      "costs_by_provider": {
+        "o3-2025-04-16": 0.132776
+      },
+      "metadata": {
+        "run_id": "6b0cc7a2-3001-4841-86e8-242e9fe38512",
+        "start_time": "2025-07-24T21:19:20.513963",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 49.82,
+      "end_time": "2025-07-24T21:20:10.333700"
+    },
+    {
+      "run_id": "d9ad9919-79e3-4fda-9a5e-0e783eba7b6f",
+      "start_time": "2025-07-24T21:23:42.678218",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "d9ad9919-79e3-4fda-9a5e-0e783eba7b6f",
+        "start_time": "2025-07-24T21:23:42.678218",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "74737b1f-da2d-4438-9b30-65762005bc9e",
+      "start_time": "2025-07-24T21:23:42.680997",
+      "status": "completed",
+      "total_cost": 0.200492,
+      "costs_by_provider": {
+        "gpt-4.1": 0.076164,
+        "o3-2025-04-16": 0.124328
+      },
+      "metadata": {
+        "run_id": "74737b1f-da2d-4438-9b30-65762005bc9e",
+        "start_time": "2025-07-24T21:23:42.680997",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 50.9,
+      "end_time": "2025-07-24T21:24:33.583226"
+    },
+    {
+      "run_id": "368b2fc8-87c9-4bea-bb19-01353cc6dd12",
+      "start_time": "2025-07-24T21:32:16.867183",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "368b2fc8-87c9-4bea-bb19-01353cc6dd12",
+        "start_time": "2025-07-24T21:32:16.867183",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "0de5f957-fcb2-464e-a831-40efc5803506",
+      "start_time": "2025-07-24T21:32:16.870101",
+      "status": "completed",
+      "total_cost": 0.229574,
+      "costs_by_provider": {
+        "gpt-4.1": 0.098078,
+        "o3-2025-04-16": 0.131496
+      },
+      "metadata": {
+        "run_id": "0de5f957-fcb2-464e-a831-40efc5803506",
+        "start_time": "2025-07-24T21:32:16.870101",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 63.07,
+      "end_time": "2025-07-24T21:33:19.942222"
+    },
+    {
+      "run_id": "7de5e428-d515-4c15-b2c3-1e0646d9686d",
+      "start_time": "2025-07-24T21:36:19.770841",
+      "status": "started",
+      "total_cost": 0.0,
+      "costs_by_provider": {},
+      "metadata": {
+        "run_id": "7de5e428-d515-4c15-b2c3-1e0646d9686d",
+        "start_time": "2025-07-24T21:36:19.770841",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      }
+    },
+    {
+      "run_id": "07877741-555f-4e64-98bd-4ba08ccf4636",
+      "start_time": "2025-07-24T21:36:19.773912",
+      "status": "completed",
+      "total_cost": 2.08529,
+      "costs_by_provider": {
+        "gpt-4.1": 0.88749,
+        "o3-2025-04-16": 1.1978
+      },
+      "metadata": {
+        "run_id": "07877741-555f-4e64-98bd-4ba08ccf4636",
+        "start_time": "2025-07-24T21:36:19.773912",
+        "command_line": "generation_phase.py configs/example_config.yaml",
+        "working_directory": "/mnt/nw/home/b.sturgeon/generation_self_steering",
+        "user": "b.sturgeon"
+      },
+      "duration_seconds": 87.84,
+      "end_time": "2025-07-24T21:37:47.617604"
+    }
+  ]
+}

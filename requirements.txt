@@ -1,0 +1,15 @@
+openai
+anthropic
+groq
+huggingface_hub
+pandarallel
+pyyaml==6.0.1
+openai==1.40.0
+scikit-learn
+plotly
+argh
+flask
+replicate
+google-generativeai
+umap-learn
+tqdm
