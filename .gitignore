@@ -13,3 +13,6 @@ hash_cache/
 output/
 .env
 .env.example
+
+cost_summary.json
+cost_detailed_log.jsonl
