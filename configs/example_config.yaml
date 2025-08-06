@@ -2,7 +2,7 @@ general_params:
   use_cache: True
   refresh_cache: False
   problem_types: 
-    - goal_conflict
+    - generic  # Add your custom evaluation types here
   
 generation_params:
   model: gpt-4.1

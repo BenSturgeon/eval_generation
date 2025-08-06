@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="agency_evaluations",
+    name="llm_eval_dataset_generator",
     version="0.1.0",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
@@ -15,15 +15,15 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "agency_pipeline=pipeline:pipeline",
+            "eval_pipeline=pipeline:pipeline",
         ],
     },
-    author="Benjamin Sturgeon",
-    author_email="bwm.sturgeon@gmail.com",
-    description="A pipeline for agency evaluations",
+    author="",
+    author_email="",
+    description="A flexible pipeline for generating and evaluating LLM datasets",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/bensturgeon/agency_evaluations",
+    url="https://github.com/yourusername/llm-eval-dataset-generator",
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",

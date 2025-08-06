@@ -1,4 +1,4 @@
-# Generation Self-Steering Instructions
+# LLM Evaluation Dataset Generator - Instructions
 
 ## Setup
 
@@ -40,7 +40,7 @@ Edit `configs/example_config.yaml` to configure your generation:
 
 - **use_cache**: Set to `True` to cache API responses (saves money on repeated runs), `False` to always make fresh API calls
 - **refresh_cache**: Set to `True` to ignore existing cache and regenerate all responses
-- **problem_types**: List of prompt types to generate (e.g., `goal_conflict`, `generic`)
+- **problem_types**: List of prompt types to generate (e.g., `generic`)
 - **model**: The model to use for generation (e.g., `gpt-4o-mini`, `claude-3-opus`, etc.)
 - **n_prompts**: Total number of prompts to generate
 - **n_prompts_created_per_generation**: Number of prompts per API call (must be 1, 2, 3, 5, 10, or 20)
@@ -95,8 +95,8 @@ python3 eval_phase.py configs/example_config.yaml
 ## Cost Tracking
 
 The system automatically tracks API costs:
-- Summary: `cost_logs/cost_summary.json`
-- Detailed log: `cost_logs/cost_detailed_log.jsonl`
+- Summary: `cost_logs/cost_summary.json` (created automatically)
+- Detailed log: `cost_logs/cost_detailed_log.jsonl` (created automatically)
 - Costs are tracked per model and per run
 
 ## Troubleshooting

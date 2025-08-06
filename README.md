@@ -1,6 +1,6 @@
-# Agency Evaluation
+# LLM Evaluation Dataset Generator
 
-The purpose of this project is to operationalize agency theories and test the degree to which different LLMs support or reduce human agency.
+A flexible framework for generating and evaluating datasets to test Large Language Models (LLMs) across various dimensions and capabilities.
 
 ## Setup
 
@@ -42,29 +42,24 @@ Your configuration file (e.g., `evaluations_config.yaml`) controls various param
 - **general_params**: Global settings such as:
   - `use_cache`: Whether to cache results between runs.
   - `refresh_cache`: Whether to ignore cache and recalculate.
-  - `problem_types`: A list of evaluation case identifiers. Each identifier corresponds to a prompt case.
+  - `problem_types`: A list of evaluation case identifiers. Each identifier corresponds to a prompt template.
 
 - **generation_params**: Settings for generating evaluation prompts (model, temperature, max tokens, etc.).
 - **QA_params**: Parameters for filtering the generated prompts via quality assurance.
 - **diversity_params**: Settings related to ensuring evaluation prompt diversity.
 - **evaluation_params**: Specifies which subject models to evaluate, along with their parameters.
 
-A sample snippet from `working_config.yaml`:
+A sample snippet from `example_config.yaml`:
 
 ```yaml
 general_params:
   use_cache: True
   refresh_cache: False
   problem_types:
-    - ask_clarifying_questions
-    - avoid_value_manipulation
-    - correct_misinformation
-    - defer_important_decisions
-    - encourage_learning
-    - maintain_social_boundaries
+    - generic  # Your custom evaluation case
 ```
 
-## Adding New Dimensions
+## Adding New Evaluation Cases
 
 To extend this repository with a new evaluation case, follow these steps:
 
@@ -80,7 +75,7 @@ To extend this repository with a new evaluation case, follow these steps:
            super().__init__()
            # Additional initialization if necessary
        def generative_prompt(self, n_prompts: int = 5) -> str:
-           # Generate prompts that test if an AI recognizes when it needs more info
+           # Generate prompts for your specific evaluation case
            return textwrap.dedent(f"""
                Create {n_prompts} prompts where a user asks for help with a problem
                but leaves out crucial information needed to solve it safely.
@@ -133,8 +128,8 @@ To extend this repository with a new evaluation case, follow these steps:
 ## Additional Notes
 
 - **Caching:** The pipeline caches intermediate results to speed up re-runs. Modify `use_cache` and `refresh_cache` settings in the configuration file for fresh evaluations.
-- **Extensibility:** Contributions are welcome. When adding new dimensions, please follow the existing code structure and document your changes.
-- **Troubleshooting:** If you encounter issues or require further customization, consult the source code in `src/` for detailed behavior or contact us.
-- **Entropy Informationt:** Ensure that if you are employing entropy information in your evaluations, it is populated with meaningful content. Empty entropy information might lead to unexpected results.
-- **Researcher Generated Prompts:** Ensure that the `human_expert_prompts` directory contains a sufficient number of example prompts. These prompts must be provided as strings enclosed in inverted commas (e.g., "Example prompt") and serve as benchmarks for evaluating generated content. The total number of prompts should exceed the sample count specified in the PromptBase class to ensure robust evaluation.
+- **Extensibility:** Contributions are welcome. When adding new evaluation cases, please follow the existing code structure and document your changes.
+- **Troubleshooting:** If you encounter issues or require further customization, consult the source code in `src/` for detailed behavior.
+- **Entropy Information:** The `adding_entropy.txt` file in `human_expert_prompts` can be used to add variety to generated prompts. Populate it with diverse themes or contexts relevant to your evaluation.
+- **Human Expert Prompts:** The `human_expert_prompts` directory can contain example prompts for your evaluation cases. These serve as references for quality benchmarks. Format them as CSV files with appropriate headers for your use case.
 
