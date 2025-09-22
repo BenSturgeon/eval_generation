@@ -95,7 +95,7 @@ def generate_dataset(
     requests_needed = (n_prompts + n_prompts_created_per_generation - 1) // n_prompts_created_per_generation
     generated_prompts = [None] * n_prompts
 
-    random.seed(42)  # This is needed because the prompt generation uses random so we need to make it deterministic to allow caching to work
+    random.seed(42)
     system_prompts = [prompt_object.generative_system_prompt() for _ in range(n_prompts)]
     generative_prompts = [prompt_object.generative_prompt(n_prompts_created_per_generation) for _ in range(n_prompts)]
 
