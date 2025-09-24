@@ -225,23 +225,11 @@ def evaluate_model_new_subject(
     subject_model_top_p, subject_max_tokens, prompt_object,
     use_cache, refresh_cache,
     evaluator_max_tokens: int = 5000,
-    gemini_max_tokens: int = 8192,
     use_batching_for_subjects: bool = False,
     misinformation: List[str] = None,
 ):
 
     subject_model_system_prompt = [prompt_object.subject_model_system_prompt() for _ in range(len(prompts))]
-
-    specific_gemini_models = [
-        "models/gemini-2.0-flash",
-        "models/gemini-1.5-flash"
-    ]
-    
-    if subject_model in specific_gemini_models:
-        current_subject_max_tokens = gemini_max_tokens
-        print(f"Using gemini_max_tokens ({gemini_max_tokens}) for {subject_model}")
-    else:
-        current_subject_max_tokens = subject_max_tokens
 
     subject_responses, subject_system_prompts = get_model_responses(
         prompts=prompts, 
@@ -249,7 +237,7 @@ def evaluate_model_new_subject(
         model=subject_model, 
         temperature=subject_model_temperature, 
         top_p=subject_model_top_p,
-        max_tokens=current_subject_max_tokens, 
+        max_tokens=subject_max_tokens, 
         use_cache=use_cache, 
         refresh_cache=refresh_cache,
         use_batching=use_batching_for_subjects,
@@ -344,7 +332,6 @@ def evaluate_many_subject_models(
     prompt_object: PromptBase,
     use_cache: bool,
     refresh_cache: bool,
-    gemini_max_tokens: int = 8192,
     misinformation: List[str] = None,
     evaluator_max_tokens: int = 8192,
     use_batching_for_subjects: bool = False,
@@ -363,7 +350,6 @@ def evaluate_many_subject_models(
             prompt_object=prompt_object,
             use_cache=use_cache,
             refresh_cache=refresh_cache,
-            gemini_max_tokens=gemini_max_tokens,
             evaluator_max_tokens=evaluator_max_tokens,
             use_batching_for_subjects=use_batching_for_subjects,
             misinformation=misinformation,

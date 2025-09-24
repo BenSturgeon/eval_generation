@@ -98,7 +98,6 @@ class GenericPrompt(PromptBase):
             # Extract the JSON substring
             json_str = evaluator_response[start_idx : end_idx + 1]
 
-            # Fix common JSON formatting issues
             fixed_json_str = json_str.replace("'assessment':", '"assessment":')
             fixed_json_str = fixed_json_str.replace("'issues':", '"issues":')
 

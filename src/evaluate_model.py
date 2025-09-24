@@ -51,7 +51,6 @@ def get_model_responses(
     Retrieve model responses for a list of prompts, handling batching and caching.
     """
     
-    # --- Caching for Batchable Models ---
     @hash_cache()
     def _cached_batch_call(prompts_tuple, system_prompt, model, max_tokens, temperature, top_p, stage_name):
         from src.batch_utils import batch_model_response
@@ -65,8 +64,8 @@ def get_model_responses(
             stage_name=stage_name,
         )
 
-    # --- Fast path: Use Batch API if possible and all system prompts are the same ---
-    # Note: OpenRouter models (like "openai/o3") should not use OpenAI batch API
+    # Fast path: Use Batch API if possible and all system prompts are the same
+    # OpenRouter models (like "openai/o3") should not use OpenAI batch API
     is_openrouter = "/" in model
     if use_batching and not is_openrouter and model.startswith(("claude", "gpt-", "o")) and len(set(system_prompts)) == 1:
         try:
@@ -85,7 +84,7 @@ def get_model_responses(
         except Exception as e:
             print(f"[WARN] Batch path failed for model {model}: {e}. Falling back to per-prompt mode.")
 
-    # --- Fallback: Original multi-threaded per-prompt logic ---
+    # Fallback: multi-threaded per-prompt logic
     responses = [None] * len(prompts)
     with ThreadPoolExecutor(max_workers=N_CONCURRENT_REQUESTS) as executor:
         future_to_index = {
@@ -122,12 +121,10 @@ def get_scores(
     """
     Computes scores for a list of subject model responses using a specified evaluator model.
     """
-    # 1. Prepare the prompts for the evaluator model
     eval_prompts = []
     eval_system_prompts = []
     system_prompt = prompt_object.subject_evaluation_system_prompt()
     for i, (prompt, response) in enumerate(zip(prompts, subject_responses)):
-        # Extract content if response is a dict (from new LLM implementations)
         response_text = response.get('content', response) if isinstance(response, dict) else response
         
         eval_prompts.append(
@@ -135,9 +132,7 @@ def get_scores(
         )
         eval_system_prompts.append(system_prompt)
 
-    # 2. Get responses from the evaluator model
     print(f"[DEBUG] Calling evaluator model {evaluator_model} with {len(eval_prompts)} evaluation prompts...")
-    # Disable batching for o3 models temporarily (batch API issues)
     use_evaluator_batching = True
     if evaluator_model and ("o3" in evaluator_model.lower() or evaluator_model.startswith("o3")):
         use_evaluator_batching = False
@@ -156,7 +151,6 @@ def get_scores(
     )
     print(f"[DEBUG] Got {len(evaluator_responses)} evaluator responses")
 
-    # 3. Calculate scores from the evaluator's responses
     scores = []
     error_placeholders = [
         "[RATE LIMIT ERROR DURING LLM CHAT]",
@@ -165,14 +159,12 @@ def get_scores(
         "[ANTHROPIC OVERLOAD ERROR DURING LLM CHAT]"
     ]
     for evaluator_response in evaluator_responses:
-        # Extract content if response is a dict (from new LLM implementations)
         if isinstance(evaluator_response, dict):
             response_text = evaluator_response.get('content', str(evaluator_response))
         else:
             response_text = evaluator_response
             
         if response_text in error_placeholders:
-            # Use minimum score for error cases
             min_score, _ = prompt_object.get_score_range()
             score = min_score
         else:
@@ -197,24 +189,10 @@ def evaluate_model(
     subject_model_top_p, subject_max_tokens, prompt_object,
     use_cache, refresh_cache,
     evaluator_max_tokens: int = 5000,
-    gemini_max_tokens: int = 8192,
     use_batching_for_subjects: bool = False,
-): # Note: gemini_max_tokens default isn't used if passed from config
+):
 
     subject_model_system_prompt = [prompt_object.subject_model_system_prompt() for _ in range(len(prompts))]
-
-    # Select the appropriate max_tokens based on the specific subject model
-    specific_gemini_models = [
-        "models/gemini-2.5-pro-preview-03-25",
-        "models/gemini-2.5-flash-preview-04-17"
-    ]
-    
-    # Apply gemini_max_tokens if the model is one of the specific Gemini models
-    if subject_model in specific_gemini_models:
-        current_subject_max_tokens = gemini_max_tokens
-        print(f"Using gemini_max_tokens ({gemini_max_tokens}) for {subject_model}") # Optional: logging
-    else:
-        current_subject_max_tokens = subject_max_tokens
 
     subject_responses, subject_system_prompts = get_model_responses(
         prompts=prompts, 
@@ -222,14 +200,13 @@ def evaluate_model(
         model=subject_model, 
         temperature=subject_model_temperature, 
         top_p=subject_model_top_p,
-        max_tokens=current_subject_max_tokens, 
+        max_tokens=subject_max_tokens, 
         use_cache=use_cache, 
         refresh_cache=refresh_cache,
         use_batching=use_batching_for_subjects,
     )
     print(f"[DEBUG] Got {len(subject_responses)} subject responses")
 
-    # Check if we have any actual responses or just errors
     error_placeholders = ["[RATE LIMIT ERROR DURING LLM CHAT]", "[ERROR DURING LLM CHAT]", "[GENERATION STOPPED DUE TO RECITATION]", "[ANTHROPIC OVERLOAD ERROR DURING LLM CHAT]"]
     error_count = 0
     for r in subject_responses:
@@ -265,7 +242,6 @@ def evaluate_many_subject_models(
     prompt_object: PromptBase,
     use_cache: bool,
     refresh_cache: bool,
-    gemini_max_tokens: int = 8192,
     evaluator_max_tokens: int = 8192,
     use_batching_for_subjects: bool = False,
     max_concurrent_subjects: int = 1,
@@ -283,7 +259,6 @@ def evaluate_many_subject_models(
             prompt_object=prompt_object,
             use_cache=use_cache,
             refresh_cache=refresh_cache,
-            gemini_max_tokens=gemini_max_tokens,
             evaluator_max_tokens=evaluator_max_tokens,
             use_batching_for_subjects=use_batching_for_subjects,
         )

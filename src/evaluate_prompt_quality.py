@@ -8,7 +8,7 @@ from src.prompts.prompt_base import PromptBase
 from src.llms import LLM
 from src.utils import hash_cache, extract_score_from_xml
 
-N_CONCURRENT_REQUESTS = 1000
+N_CONCURRENT_REQUESTS = 20
 
 
 @hash_cache()

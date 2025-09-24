@@ -58,6 +58,5 @@ evaluation_params:
   subject_model_temperature: 0
   subject_model_top_p: 0.95
   subject_max_tokens: 1000
-  gemini_max_tokens: 8192 # Special token limit for specific Gemini models
   evaluator_max_tokens: 5000
 
