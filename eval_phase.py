@@ -1,8 +1,11 @@
 from pipeline import *
+from src.evaluate_model_existing import evaluate_many_subject_models_existing
+from src.batching import install_batching_config
 
-def eval_phase(evaluations_config_file, output_folder = "output/eval_output", input_folder = "output/generation_output"):
+def eval_phase(evaluations_config_file, output_folder = "output/eval_output", input_folder = "output/generation_output", use_existing_responses=False):
     setup_keys(KEYS_PATH)
     config = load_config(evaluations_config_file)
+    install_batching_config(config)
 
     problem_types = config['general_params']['problem_types']
     del config['general_params']['problem_types']
@@ -28,6 +31,13 @@ def eval_phase(evaluations_config_file, output_folder = "output/eval_output", in
         html_out += model_scores_html
         html_out += model_evaluation_html
 
+        # Save as parquet with proper type conversion
+        out_df_parquet = out_df.copy()
+        for col in out_df_parquet.columns:
+            if out_df_parquet[col].dtype == 'object':
+                out_df_parquet[col] = out_df_parquet[col].apply(lambda x: str(x) if not isinstance(x, (str, int, float, bool, type(None))) else x)
+        out_df_parquet.to_parquet(os.path.join(results_output_folder, 'raw.parquet'), index=False)
+        # Also save as CSV for backwards compatibility
         with open(os.path.join(results_output_folder, 'raw.csv'), 'w') as f:
             f.write(out_df.to_csv(index=False))
         

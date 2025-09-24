@@ -70,7 +70,7 @@ class RateLimitedLLM:
 
 
 class OpenAILLM(ABSTRACT_LLM, AvailableModelsCache):
-    def __init__(self, model, system_prompt, base_url=None, api_key=None) -> None:
+    def __init__(self, model, system_prompt, base_url=None, api_key=None, reasoning_effort=None) -> None:
         super().__init__(system_prompt)
         self.base_url = base_url
         self.api_key = api_key
@@ -79,6 +79,7 @@ class OpenAILLM(ABSTRACT_LLM, AvailableModelsCache):
             base_url=self.base_url,
         )
         self.model = model
+        self.reasoning_effort = reasoning_effort  # For GPT-5 models
         # Check if model is from the OpenAI "o" series (o1, o3, o4, etc.)
         self.is_o1_model = model and (
             model.startswith("o1") or 
@@ -88,6 +89,8 @@ class OpenAILLM(ABSTRACT_LLM, AvailableModelsCache):
             "o3-" in model or
             "o4-" in model
         )
+        # Check if model is GPT-5
+        self.is_gpt5_model = model and model.startswith("gpt-5")
 
     def chat(
         self,
@@ -98,7 +101,43 @@ class OpenAILLM(ABSTRACT_LLM, AvailableModelsCache):
         return_json=False,
         return_logprobs=False,
     ):
-        if self.is_o1_model:
+        if self.is_gpt5_model:
+            # GPT-5 uses chat completions API with special parameters
+            self.messages.append({"role": "user", "content": prompt})
+            params = {
+                "messages": self.messages,
+                "model": self.model,
+            }
+            # GPT-5 uses max_completion_tokens instead of max_tokens
+            if max_tokens is not None:
+                params["max_completion_tokens"] = max_tokens
+            # GPT-5 doesn't support temperature or top_p parameters
+            # Just use defaults
+            if return_json:
+                params["response_format"] = {"type": "json_object"}
+            if return_logprobs:
+                params.update({"logprobs": True, "top_logprobs": 5})
+            # Add reasoning effort for GPT-5 models
+            if self.reasoning_effort:
+                params["reasoning_effort"] = self.reasoning_effort
+            else:
+                # Default to minimal for speed in evaluations
+                params["reasoning_effort"] = "minimal"
+            response = self.client.chat.completions.create(**params)
+            response_text = response.choices[0].message.content.strip()
+            self.messages.append({"role": "assistant", "content": response_text})
+            if return_logprobs:
+                return {
+                    "content": response.choices[0].message.content,
+                    "logprobs": response.choices[0].logprobs,
+                    "usage": response.usage,
+                }
+            else:
+                return {
+                    "content": response_text,
+                    "usage": response.usage,
+                }
+        elif self.is_o1_model:
             messages = [msg for msg in self.messages if msg["role"] != "system"]
 
             if self.system_prompt:
@@ -169,12 +208,30 @@ class OpenAILLM(ABSTRACT_LLM, AvailableModelsCache):
             return []
         
         try:
-            return cls.model_cache_get(
+            # Get models from API
+            api_models = cls.model_cache_get(
                 "openai_models",
                 lambda: [model.id for model in OpenAI().models.list().data]
             )
         except Exception:
-            return []
+            api_models = []
+        
+        # Add custom/special models that may not appear in the API list
+        custom_models = [
+            "gpt-4.1-2025-04-14",
+            "o3-2025-04-16",
+            "o1-preview",
+            "o1-mini",
+            "o3-mini",
+            "gpt-5",
+            "gpt-5-mini",
+            "gpt-5-nano",
+            "gpt-5-high"  # This is GPT-5 with high reasoning effort
+        ]
+        
+        # Combine and deduplicate
+        all_models = list(set(api_models + custom_models))
+        return all_models
 
 
 class GrokLLM(OpenAILLM):
@@ -460,7 +517,9 @@ class AnthropicLLM(ABSTRACT_LLM, RateLimitedLLM):
             "claude-3-5-sonnet-20241022",
             "claude-3-5-haiku-20241022",
             "claude-sonnet-4-20250514",
-            "claude-opus-4-20250514"
+            "claude-opus-4-20250514",
+            "claude-4-sonnet",  # Adding Claude 4 Sonnet
+            "claude-opus-4-1-20250805"  # Adding Claude Opus 4.1
         ]
 
 
@@ -657,7 +716,12 @@ class LLM(ABSTRACT_LLM):
     def __init__(self, model, system_prompt) -> None:
         self.system_prompt = system_prompt
         self.model = model
-        if model in GeminiLLM.get_available_models():
+        
+        # Handle special GPT-5 high reasoning effort case
+        if model == "gpt-5-high":
+            # GPT-5 with medium reasoning effort (changed from high for faster responses)
+            self.llm = OpenAILLM("gpt-5", system_prompt, reasoning_effort="medium")
+        elif model in GeminiLLM.get_available_models():
             self.llm = GeminiLLM(model, system_prompt)
         elif model in AnthropicLLM.get_available_models():
             self.llm = AnthropicLLM(model, system_prompt)

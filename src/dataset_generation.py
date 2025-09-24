@@ -24,56 +24,44 @@ def generate_single_prompt(
     top_p: float,
     max_retries: int = 10
 ):
-    """
-    example_prompts: list of example prompts to be used as reference
-    i: index of the request. Used for caching
-    """
 
-    # It's possible that max retries will be reached but just keeping it here to make sure we don't get stuck in an infinite loop
     for _ in range(max_retries):  
         llm = LLM(model, system_prompt=system_prompt)
 
         response = llm.chat(prompt=generative_prompt, temperature=temperature, max_tokens=max_tokens, top_p=top_p, return_json=True)
 
-        # Clean potential JSON formatting from the response
         if "```json" in response:
             response = response.replace("```json", "").replace("```", "").strip()
-        elif "```" in response: # Handle cases where only ``` is present
+        elif "```" in response:
             response = response.replace("```", "").strip()
 
         try:
             prompt = json.loads(response)
             
-            # Handle wrapped responses (e.g., {"data": [...]} or {"response": [...]})
             if isinstance(prompt, dict):
-                # Check if it's a wrapped array
                 if "data" in prompt and isinstance(prompt["data"], list):
                     prompt = prompt["data"]
                 elif "response" in prompt and isinstance(prompt["response"], list):
                     prompt = prompt["response"]
                 else:
-                    # Single JSON object, wrap it in a list
                     generated_subject_prompts = [json.dumps(prompt)]
-                    # Skip further processing since we already have what we need
                     if len(generated_subject_prompts) == n_prompts_created_per_generation:
                         return generated_subject_prompts, system_prompt, generative_prompt
                     else:
                         continue
             
             if isinstance(prompt, list):
-                # For list of JSON objects, convert each to string
                 if all(isinstance(p, dict) for p in prompt):
                     generated_subject_prompts = [json.dumps(p) for p in prompt]
                 else:
                     generated_subject_prompts = prompt
             else:
-                continue  # Retry if it's neither a dict nor a list
+                continue
         except json.JSONDecodeError as e:
-            continue  # Retry if the response is not JSON
+            continue
 
-        # Basic length check
         if len(generated_subject_prompts) != n_prompts_created_per_generation:
-            continue  # Retry if the number of prompts generated is not as expected
+            continue
 
         return generated_subject_prompts, system_prompt, generative_prompt
     
