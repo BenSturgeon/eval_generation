@@ -79,8 +79,7 @@ class OpenAILLM(ABSTRACT_LLM, AvailableModelsCache):
             base_url=self.base_url,
         )
         self.model = model
-        self.reasoning_effort = reasoning_effort  # For GPT-5 models
-        # Check if model is from the OpenAI "o" series (o1, o3, o4, etc.)
+        self.reasoning_effort = reasoning_effort
         self.is_o1_model = model and (
             model.startswith("o1") or 
             model.startswith("o3") or 
@@ -89,7 +88,6 @@ class OpenAILLM(ABSTRACT_LLM, AvailableModelsCache):
             "o3-" in model or
             "o4-" in model
         )
-        # Check if model is GPT-5
         self.is_gpt5_model = model and model.startswith("gpt-5")
 
     def chat(
@@ -102,26 +100,20 @@ class OpenAILLM(ABSTRACT_LLM, AvailableModelsCache):
         return_logprobs=False,
     ):
         if self.is_gpt5_model:
-            # GPT-5 uses chat completions API with special parameters
             self.messages.append({"role": "user", "content": prompt})
             params = {
                 "messages": self.messages,
                 "model": self.model,
             }
-            # GPT-5 uses max_completion_tokens instead of max_tokens
             if max_tokens is not None:
                 params["max_completion_tokens"] = max_tokens
-            # GPT-5 doesn't support temperature or top_p parameters
-            # Just use defaults
             if return_json:
                 params["response_format"] = {"type": "json_object"}
             if return_logprobs:
                 params.update({"logprobs": True, "top_logprobs": 5})
-            # Add reasoning effort for GPT-5 models
             if self.reasoning_effort:
                 params["reasoning_effort"] = self.reasoning_effort
             else:
-                # Default to minimal for speed in evaluations
                 params["reasoning_effort"] = "minimal"
             response = self.client.chat.completions.create(**params)
             response_text = response.choices[0].message.content.strip()
@@ -150,8 +142,6 @@ class OpenAILLM(ABSTRACT_LLM, AvailableModelsCache):
                 "messages": messages,
             }
             
-            # Add optional parameters only if they are not None
-            
             params["temperature"] = 1
 
             response = self.client.chat.completions.create(**params)
@@ -160,7 +150,6 @@ class OpenAILLM(ABSTRACT_LLM, AvailableModelsCache):
             self.messages.append({"role": "user", "content": prompt})
             self.messages.append({"role": "assistant", "content": response_text})
 
-            # Return both text and usage so downstream cost trackers can see full token counts
             return {
                 "content": response_text,
                 "usage": response.usage,
@@ -172,7 +161,6 @@ class OpenAILLM(ABSTRACT_LLM, AvailableModelsCache):
                 "model": self.model,
             }
             
-            # Add optional parameters only if they are not None
             if temperature is not None:
                 params["temperature"] = temperature
             if max_tokens is not None:
@@ -208,7 +196,6 @@ class OpenAILLM(ABSTRACT_LLM, AvailableModelsCache):
             return []
         
         try:
-            # Get models from API
             api_models = cls.model_cache_get(
                 "openai_models",
                 lambda: [model.id for model in OpenAI().models.list().data]
@@ -216,7 +203,6 @@ class OpenAILLM(ABSTRACT_LLM, AvailableModelsCache):
         except Exception:
             api_models = []
         
-        # Add custom/special models that may not appear in the API list
         custom_models = [
             "gpt-4.1-2025-04-14",
             "o3-2025-04-16",
@@ -226,10 +212,9 @@ class OpenAILLM(ABSTRACT_LLM, AvailableModelsCache):
             "gpt-5",
             "gpt-5-mini",
             "gpt-5-nano",
-            "gpt-5-high"  # This is GPT-5 with high reasoning effort
+            "gpt-5-high"
         ]
         
-        # Combine and deduplicate
         all_models = list(set(api_models + custom_models))
         return all_models
 
@@ -340,34 +325,26 @@ class AnthropicLLM(ABSTRACT_LLM, RateLimitedLLM):
             A list of responses corresponding 1-to-1 with `prompts`.
         """
 
-        # Guard: empty prompts
         if not prompts:
             return []
 
-        # Respect existing rate limit logic (up to 30 req/min per model)
-        # We treat the batch as one request.
         self.rate_limit_wait(self.model, 30)
 
-        # Lazy import of types – older SDK versions may not ship them, so we
-        # fall back to per-prompt chat() calls if batch types are missing.
         try:
             from anthropic.types.message_create_params import MessageCreateParamsNonStreaming
             from anthropic.types.messages.batch_create_params import Request as AnthropicRequest
         except ImportError:
-            # Silently degrade to per-prompt chat() calls if batch types are missing
             return [
                 self.chat(p, temperature=temperature, max_tokens=max_tokens, top_p=top_p)
                 for p in prompts
             ]
 
-        # Build request objects
         req_temperature = temperature if temperature is not None else 1
         req_top_p = top_p if top_p is not None else 1
         req_max_tokens = max_tokens if max_tokens is not None else 1024
 
         anthropic_reqs = []
         for idx, prompt in enumerate(prompts):
-            # Compose messages: optional system prompt + user prompt
             messages_payload = [
                 {
                     "role": "user",
@@ -391,12 +368,9 @@ class AnthropicLLM(ABSTRACT_LLM, RateLimitedLLM):
                 )
             )
 
-        # Fire off the batch
         print(f"[DEBUG] Submitting Anthropic batch with {len(prompts)} prompts to model '{self.model}'")
         batch = self.client.messages.batches.create(requests=anthropic_reqs)
 
-        # Poll until finished (Anthropic docs: may take up to 24h, but we'll
-        # poll every 2s; caller can add timeout externally).
         batch_id = batch.id
         start_time = time.time()
         last_status_log = 0.0
@@ -404,7 +378,6 @@ class AnthropicLLM(ABSTRACT_LLM, RateLimitedLLM):
             time.sleep(2)
             batch = self.client.messages.batches.retrieve(batch_id)
 
-            # Emit a heartbeat every ~30 s so users see progress
             now = time.time()
             if now - last_status_log > 30:
                 completed = getattr(batch, 'completed_requests', 0)
@@ -416,15 +389,11 @@ class AnthropicLLM(ABSTRACT_LLM, RateLimitedLLM):
             f"[DEBUG] Batch ({stage_name}) {batch_id} finished with status '{batch.processing_status}' in {time.time() - start_time:.1f}s"
         )
 
-        # At this point processing ended (succeeded/errored etc.)
-        # Fetch results – use SDK helper if present, else stream JSONL.
         results_objs = []
         try:
-            # Newer SDKs expose `.results()` which yields MessageBatchIndividualResponse objects
             results_iter = self.client.messages.batches.results(batch_id)
             results_objs = list(results_iter)
         except Exception:
-            # Fall back to downloading JSONL from results_url (dicts)
             import json, requests as _requests
 
             if not getattr(batch, "results_url", None):
@@ -434,13 +403,11 @@ class AnthropicLLM(ABSTRACT_LLM, RateLimitedLLM):
             resp.raise_for_status()
             results_objs = [json.loads(l) for l in resp.text.splitlines() if l.strip()]
 
-        # Normalize each result into a dict
         results_lines = []
         for obj in results_objs:
             if isinstance(obj, dict):
                 results_lines.append(obj)
             else:
-                # Pydantic model – use model_dump if available, else vars()
                 if hasattr(obj, "model_dump"):
                     results_lines.append(obj.model_dump(exclude_none=True))
                 else:
@@ -451,7 +418,6 @@ class AnthropicLLM(ABSTRACT_LLM, RateLimitedLLM):
             if res is not None and not isinstance(res, dict) and hasattr(res, "model_dump"):
                 item["result"] = res.model_dump(exclude_none=True)
 
-        # Helper to robustly extract assistant text from varying result schemas
         def _extract_text(obj: dict):
             # Case 1: modern schema => obj['message']['content'][0]['text']
             if isinstance(obj.get("message"), dict):
@@ -485,10 +451,8 @@ class AnthropicLLM(ABSTRACT_LLM, RateLimitedLLM):
 
             return None
 
-        # Map custom_id back to index → response text
         responses_map = {}
         for item in results_lines:
-            # The schema uses either `custom_id` or `request.custom_id` depending on SDK.
             cid = item.get("custom_id") or item.get("request", {}).get("custom_id")
             assistant_text = _extract_text(item)
 
@@ -518,8 +482,8 @@ class AnthropicLLM(ABSTRACT_LLM, RateLimitedLLM):
             "claude-3-5-haiku-20241022",
             "claude-sonnet-4-20250514",
             "claude-opus-4-20250514",
-            "claude-4-sonnet",  # Adding Claude 4 Sonnet
-            "claude-opus-4-1-20250805"  # Adding Claude Opus 4.1
+            "claude-4-sonnet",
+            "claude-opus-4-1-20250805"
         ]
 
 
@@ -669,8 +633,6 @@ class GeminiLLM(ABSTRACT_LLM, AvailableModelsCache, RateLimitedLLM):
             generation_config=generation_config
         )
 
-        # Gemini may sometimes return a response whose candidate has no textual `Part`,
-        # which causes `response.text` to raise an exception (finish_reason != 0, etc.).
         try:
             response_text = response.text
         except Exception:
@@ -685,7 +647,6 @@ class GeminiLLM(ABSTRACT_LLM, AvailableModelsCache, RateLimitedLLM):
                                 if part_text:
                                     response_text += part_text
             except Exception as e:
-                # If extraction still fails, default to empty string to avoid crashing.
                 response_text = ""
                 print(f"Error extracting Gemini response text: {e}, response: {response}")
 
@@ -717,9 +678,7 @@ class LLM(ABSTRACT_LLM):
         self.system_prompt = system_prompt
         self.model = model
         
-        # Handle special GPT-5 high reasoning effort case
         if model == "gpt-5-high":
-            # GPT-5 with medium reasoning effort (changed from high for faster responses)
             self.llm = OpenAILLM("gpt-5", system_prompt, reasoning_effort="medium")
         elif model in GeminiLLM.get_available_models():
             self.llm = GeminiLLM(model, system_prompt)
